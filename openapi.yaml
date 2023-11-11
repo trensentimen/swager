@@ -1,0 +1,272 @@
+openapi: 3.0.3
+info:
+  title: Dokumen API Cloud Function - OpenAPI 3.0
+  description: >-
+    Dokumentasi API Cloud Function - Trensentimen
+  termsOfService: https://github.com/trensentimen/swagger
+  contact:
+    url: https://github.com/trensentimen
+  license:
+    name: trensentimen Package
+    url: https://pkg.go.dev/github.com/trensentimen/be_trensen
+  version: 1.0.11
+externalDocs:
+  description: Repository GCF
+  url: https://github.com/trensentimen/cloud_functions
+servers:
+  - url: https://asia-southeast2-trens-project.cloudfunctions.net/
+tags:
+  - name: register
+    description: register User
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://erfahtech.github.io/trensentimen/signup/
+  - name: login
+    description: Auth to Access to API
+    externalDocs:
+      description: Deskripsi dan Kode Program
+      url: https://erfahtech.github.io/gcf/login/
+  - name: user
+    description: Get Token and Authorize
+paths:
+  /urse-signup:
+    post:
+      tags:
+        - signup
+      summary: SingUp Data User
+      description: Signup Data User
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Signup"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/SignupResponse"
+        "405":
+          description: Invalid input
+  /urse-login:
+    post:
+      tags:
+        - login
+      summary: Login get Token
+      description: Login and Get User Token
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "405":
+          description: Invalid input
+      security:
+        - token:
+            - write:apiKey
+            - read:apiKey
+        # - Bearer: []
+  /urse-insertdevices:
+    post:
+      tags:
+        - user
+      summary: Insert Device User
+      description: Menambah Device User
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/insertDevices"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InsertResponseDevice"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+  /urse-getdevices:
+    get:
+      tags:
+        - user
+      summary: Get Device User
+      description: Mendapatkan Device Berdasarkan User Login
+      operationId: authService
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetResponseDevice"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+  /urse-updatedevice:
+    put:
+      tags:
+        - user
+      summary: Update Device User
+      parameters:
+        - in: query
+          name: id
+          type: string
+          required: true
+          description: Masukan Id Device.
+      description: Memperbaharui Device Berdasarkan User Login
+      operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/insertDevices"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+  /urse-deletedevice:
+    delete:
+      tags:
+        - user
+      summary: Delete Device User
+      parameters:
+        - in: query
+          name: id
+          type: string
+          required: true
+          description: Masukan Id Device.
+      description: Menghapus Device Berdasarkan User Login
+      operationId: authService
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+components:
+  schemas:
+    Signup:
+      type: object
+      properties:
+        username:
+          type: string
+          example: erfah
+        email:
+          type: string
+          example: email@gmail.com
+        password:
+          type: string
+          example: secret
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: erfah@gmail.com
+        password:
+          type: string
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: pesan berhasil
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        token:
+          type: string
+          example: tokencuy
+        message:
+          type: string
+          example: Selamat Datang
+    insertDevices:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Lampu
+        topic:
+          type: string
+          example: kamar/lampu
+    InsertResponseDevice:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: "Device berhasil ditambahkan dengan nama: "
+    GetResponseDevice:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: "Device data successfully retrieved"
+        data:
+          type: list
+          example: [{ "id": "123456", "name": "Lampu", "topic": "kamar/lampu" }, { "id": "123456", "name": "Kipas", "topic": "kamar/kipas" }]
+  requestBodies:
+    AuthReq:
+      description: Request Authentication
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Auth"
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/AuthResponse"
+  securitySchemes:
+    token:
+      type: apiKey
+      name: token
+      in: header
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: >-
+        Masukan token dengan `Bearer: ` contoh "Bearer abcde12345".
