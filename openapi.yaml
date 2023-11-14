@@ -29,18 +29,18 @@ tags:
   - name: user
     description: Get Token and Authorize
 paths:
-  /urse-signup:
+  /urse-register:
     post:
       tags:
-        - signup
+        - register
       summary: SingUp Data User
-      description: Signup Data User
+      description: Register Data User
       operationId: authService
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Signup"
+              $ref: "#/components/schemas/Register"
       responses:
         "200":
           description: successful operation
@@ -48,7 +48,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/SignupResponse"
+                  $ref: "#/components/schemas/RegisterResponse"
         "405":
           description: Invalid input
   /urse-login:
@@ -77,35 +77,35 @@ paths:
             - write:apiKey
             - read:apiKey
         # - Bearer: []
-  /urse-insertdevices:
+  /urse-addTopic:
     post:
       tags:
         - user
-      summary: Insert Device User
-      description: Menambah Device User
+      summary: Add Topic
+      description: Menambah Topik
       operationId: authService
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/insertDevices"
+              $ref: "#/components/schemas/addTopic"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/InsertResponseDevice"
+                $ref: "#/components/schemas/addResponseTopic"
         "405":
           description: Invalid input
       security:
         - Bearer: []
-  /urse-getdevices:
+  /urse-getAllTopics:
     get:
       tags:
         - user
-      summary: Get Device User
-      description: Mendapatkan Device Berdasarkan User Login
+      summary: Get All Topic
+      description: Mendapatkan Semua Topik
       operationId: authService
       responses:
         "200":
@@ -113,29 +113,47 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetResponseDevice"
+                $ref: "#/components/schemas/getAllResponseTopics"
         "405":
           description: Invalid input
       security:
         - Bearer: []
-  /urse-updatedevice:
+  /urse-getTopics:
+    get:
+      tags:
+        - user
+      summary: Get Topic
+      description: Mendapatkan Topik
+      operationId: authService
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getResponseTopics"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+  /urse-updateTopic:
     put:
       tags:
         - user
-      summary: Update Device User
+      summary: Update Topic
       parameters:
         - in: query
           name: id
           type: string
           required: true
-          description: Masukan Id Device.
-      description: Memperbaharui Device Berdasarkan User Login
+          description: Masukan Topik.
+      description: Memperbaharui Topik
       operationId: authService
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/insertDevices"
+              $ref: "#/components/schemas/addTopic"
       responses:
         "200":
           description: successful operation
@@ -147,18 +165,18 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /urse-deletedevice:
+  /urse-deleteTopic:
     delete:
       tags:
         - user
-      summary: Delete Device User
+      summary: Delete Topic
       parameters:
         - in: query
           name: id
           type: string
           required: true
-          description: Masukan Id Device.
-      description: Menghapus Device Berdasarkan User Login
+          description: Masukan Nama Topik.
+      description: Menghapus Topik
       operationId: authService
       responses:
         "200":
@@ -178,7 +196,7 @@ components:
       properties:
         username:
           type: string
-          example: erfah
+          example: aryka
         email:
           type: string
           example: email@gmail.com
@@ -190,7 +208,7 @@ components:
       properties:
         email:
           type: string
-          example: erfah@gmail.com
+          example: aryka@gmail.com
         password:
           type: string
     SuccessResponse:
@@ -270,3 +288,4 @@ components:
       in: header
       description: >-
         Masukan token dengan `Bearer: ` contoh "Bearer abcde12345".
+        
