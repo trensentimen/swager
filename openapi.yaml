@@ -33,7 +33,7 @@ paths:
     post:
       tags:
         - register
-      summary: SingUp Data User
+      summary: Register Data User
       description: Register Data User
       operationId: authService
       requestBody:
@@ -194,13 +194,16 @@ components:
     Register:
       type: object
       properties:
-        username:
+        name:
           type: string
           example: aryka
         email:
           type: string
           example: email@gmail.com
         password:
+          type: string
+          example: secret
+        confirm pasword:
           type: string
           example: secret
           
