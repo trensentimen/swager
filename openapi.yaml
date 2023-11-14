@@ -288,4 +288,3 @@ components:
       in: header
       description: >-
         Masukan token dengan `Bearer: ` contoh "Bearer abcde12345".
-        
