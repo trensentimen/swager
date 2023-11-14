@@ -203,6 +203,27 @@ components:
         password:
           type: string
           example: secret
+     SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: register berhasil
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        token:
+          type: string
+          example: tokencuy
+        message:
+          type: string
+          example: Selamat Datang Di Website Trensentimen
     Login:
       type: object
       properties:
@@ -219,7 +240,7 @@ components:
           example: true
         message:
           type: string
-          example: pesan berhasil
+          example: login berhasil
     AuthResponse:
       type: object
       properties:
