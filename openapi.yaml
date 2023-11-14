@@ -103,7 +103,7 @@ paths:
   /getAllTopics:
     get:
       tags:
-        - user
+        - topic
       summary: Get All Topic
       description: Mendapatkan Semua Topik
       operationId: authService
@@ -121,7 +121,7 @@ paths:
   /getTopics:
     get:
       tags:
-        - user
+        - topic
       summary: Get Topic
       description: Mendapatkan Topik
       operationId: authService
@@ -139,7 +139,7 @@ paths:
   /updateTopic:
     put:
       tags:
-        - user
+        - topic
       summary: Update Topic
       parameters:
         - in: query
