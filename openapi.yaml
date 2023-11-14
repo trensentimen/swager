@@ -80,7 +80,7 @@ paths:
   /addTopic:
     post:
       tags:
-        - user
+        - topic
       summary: Add Topic
       description: Menambah Topik
       operationId: authService
