@@ -221,18 +221,6 @@ components:
         message:
           type: string
           example: login berhasil
-    AuthResponse:
-      type: object
-      properties:
-        status:
-          type: bool
-          example: true
-        token:
-          type: string
-          example: tokencuy
-        message:
-          type: string
-          example: Selamat Datang Di Website Trensentimen
     addTopic:
       type: object
       properties:
