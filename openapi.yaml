@@ -191,7 +191,7 @@ paths:
         - Bearer: []
 components:
   schemas:
-    Signup:
+    Register:
       type: object
       properties:
         username:
@@ -231,17 +231,17 @@ components:
           example: tokencuy
         message:
           type: string
-          example: Selamat Datang
-    insertDevices:
+          example: Selamat Datang Di Website Trensentimen
+    addTopic:
       type: object
       properties:
         name:
           type: string
-          example: Lampu
+          example: Pilpres
         topic:
           type: string
-          example: kamar/lampu
-    InsertResponseDevice:
+          example: presiden 2024
+    addResponseTopic:
       type: object
       properties:
         status:
@@ -249,8 +249,9 @@ components:
           example: true
         message:
           type: string
-          example: "Device berhasil ditambahkan dengan nama: "
-    GetResponseDevice:
+          example: "Topik berhasil ditambahkan dengan nama: "
+    GetResponseTopics:
+      GetResponseTopics:
       type: object
       properties:
         status:
@@ -258,10 +259,22 @@ components:
           example: true
         message:
           type: string
-          example: "Device data successfully retrieved"
+          example: "Data successfully retrieved"
         data:
           type: list
-          example: [{ "id": "123456", "name": "Lampu", "topic": "kamar/lampu" }, { "id": "123456", "name": "Kipas", "topic": "kamar/kipas" }]
+          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
+    GetAllResponseTopics:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: "Data successfully retrieved"
+        data:
+          type: list
+          example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
   requestBodies:
     AuthReq:
       description: Request Authentication
