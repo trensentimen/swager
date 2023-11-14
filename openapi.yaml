@@ -26,10 +26,10 @@ tags:
     externalDocs:
       description: Deskripsi dan Kode Program
       url: https://erfahtech.github.io/gcf/login/
-  - name: user
+  - name: topic
     description: Get Token and Authorize
 paths:
-  /urse-register:
+  /register:
     post:
       tags:
         - register
@@ -51,7 +51,7 @@ paths:
                   $ref: "#/components/schemas/RegisterResponse"
         "405":
           description: Invalid input
-  /urse-login:
+  /login:
     post:
       tags:
         - login
@@ -77,7 +77,7 @@ paths:
             - write:apiKey
             - read:apiKey
         # - Bearer: []
-  /urse-addTopic:
+  /addTopic:
     post:
       tags:
         - user
@@ -100,7 +100,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /urse-getAllTopics:
+  /getAllTopics:
     get:
       tags:
         - user
@@ -118,7 +118,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /urse-getTopics:
+  /getTopics:
     get:
       tags:
         - user
@@ -136,7 +136,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /urse-updateTopic:
+  /updateTopic:
     put:
       tags:
         - user
@@ -165,7 +165,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /urse-deleteTopic:
+  /deleteTopic:
     delete:
       tags:
         - user
