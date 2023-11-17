@@ -216,7 +216,7 @@ components:
         password:
           type: string
 
-    SuccessResponse:
+    LoginResponse:
       type: object
       properties:
         status:
