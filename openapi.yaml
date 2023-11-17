@@ -215,6 +215,7 @@ components:
           example: aryka@gmail.com
         password:
           type: string
+
     SuccessResponse:
       type: object
       properties:
@@ -224,6 +225,9 @@ components:
         message:
           type: string
           example: login berhasil
+        token:
+          type: string
+          example: abcd1234
     addTopic:
       type: object
       properties:
