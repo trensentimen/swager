@@ -82,7 +82,7 @@ paths:
       tags:
         - topic
       summary: Add Topic
-      description: Menambahkan Data Topik
+      description: Menambah Topik
       operationId: authService
       requestBody:
         content:
@@ -95,7 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/addTopic"
+                $ref: "#/components/schemas/addResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -113,7 +113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAllTopics"
+                $ref: "#/components/schemas/getAllResponseTopics"
         "405":
           description: Invalid input
       security:
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getTopic"
+                $ref: "#/components/schemas/getResponseTopics"
         "405":
           description: Invalid input
       security:
@@ -203,7 +203,7 @@ components:
         password:
           type: string
           example: secret
-        confirm password:
+        confirm pasword:
           type: string
           example: secret
           
@@ -228,7 +228,6 @@ components:
         token:
           type: string
           example: abcd1234
-
     addTopic:
       type: object
       properties:
@@ -238,7 +237,6 @@ components:
         topic:
           type: string
           example: presiden 2024
-
     addResponseTopic:
       type: object
       properties:
@@ -248,23 +246,6 @@ components:
         message:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
-
-    GetTopic:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID dari topik
-          example: "12345"
-        name:
-          type: string
-          description: Nama topik
-          example: "Pilpres"
-        topic:
-      type: string
-          description: Deskripsi topik
-          example: "Pemilihan presiden tahun depan"
-
     GetResponseTopics:
       GetResponseTopics:
       type: object
@@ -277,24 +258,7 @@ components:
           example: "Data successfully retrieved"
         data:
           type: list
-          example: [{ "id": "7890", "name": "bacapres", "topic": "pasln presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
-
-    GetAllTopic:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID dari topik
-          example: "12345"
-        name:
-          type: string
-          description: Nama topik
-          example: "Pilpres"
-        topic:
-      type: string
-          description: Deskripsi topik
-          example: "Pemilihan presiden tahun depan"
-
+          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
     GetAllResponseTopics:
       type: object
       properties:
@@ -307,7 +271,6 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-  
   requestBodies:
     AuthReq:
       description: Request Authentication
