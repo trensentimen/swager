@@ -228,12 +228,14 @@ components:
         token:
           type: string
           example: abcd1234
+
     addTopic:
       type: object
       properties:
         nametopic:
           type: string
           example: Pilpres
+          
     addResponseTopic:
       type: object
       properties:
@@ -243,6 +245,7 @@ components:
         message:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
+
     GetResponseTopics:
       GetResponseTopics:
       type: object
