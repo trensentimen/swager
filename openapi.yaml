@@ -235,7 +235,6 @@ components:
         nametopic:
           type: string
           example: Pilpres
-
     addResponseTopic:
       type: object
       properties:
@@ -245,9 +244,7 @@ components:
         message:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
-
           
-
     GetResponseTopics:
       GetResponseTopics:
       type: object
@@ -261,7 +258,6 @@ components:
         data:
           type: list
           example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
-    
     GetAllResponseTopics:
       type: object
       properties:
@@ -274,7 +270,6 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-  
   requestBodies:
     AuthReq:
       description: Request Authentication
@@ -291,8 +286,7 @@ components:
             items:
               $ref: "#/components/schemas/AuthResponse"
   securitySchemes:
-
-    token:                              1
+    token:
       type: apiKey
       name: token
       in: header
