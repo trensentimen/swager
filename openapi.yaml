@@ -231,12 +231,9 @@ components:
     addTopic:
       type: object
       properties:
-        name:
+        nametopic:
           type: string
           example: Pilpres
-        topic:
-          type: string
-          example: presiden 2024
     addResponseTopic:
       type: object
       properties:
