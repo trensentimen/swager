@@ -263,7 +263,7 @@ components:
           type: list
           example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
     
-    GetAllResponseTopics:
+    getAllResponseTopics:
       type: object
       properties:
         status:
