@@ -118,7 +118,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
-  /getTopics:
+  /getTopic:
     get:
       tags:
         - topic
@@ -228,6 +228,7 @@ components:
         token:
           type: string
           example: abcd1234
+    
     addTopic:
       type: object
       properties:
@@ -237,6 +238,7 @@ components:
         topic:
           type: string
           example: presiden 2024
+    
     addResponseTopic:
       type: object
       properties:
@@ -246,7 +248,8 @@ components:
         message:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
-    GetResponseTopics:
+    
+    GetResponseTopic:
       GetResponseTopics:
       type: object
       properties:
@@ -259,6 +262,7 @@ components:
         data:
           type: list
           example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
+    
     GetAllResponseTopics:
       type: object
       properties:
