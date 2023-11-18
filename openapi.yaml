@@ -231,7 +231,7 @@ components:
     addTopic:
       type: object
       properties:
-        nametopic:
+        name:
           type: string
           example: Pilpres
         topic:
