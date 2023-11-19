@@ -95,7 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/addTopicResponse"
+                $ref: "#/components/schemas/addResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetResponseTopic"
+                $ref: "#/components/schemas/getResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -160,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateTopicResponse"
+                $ref: "#/components/schemas/updateResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -203,10 +203,10 @@ components:
         password:
           type: string
           example: secret
-        confirmPassword:
+        confirm password:
           type: string
           example: secret
-       
+          
     Login:
       type: object
       properties:
@@ -227,7 +227,8 @@ components:
           example: login berhasil
         token:
           type: string
-
+          example: abcd1234
+    
     addTopic:
       type: object
       properties:
@@ -237,18 +238,19 @@ components:
         topic:
           type: string
           example: presiden 2024
-
-    addTopicResponse:
+    
+    addResponseTopic:
       type: object
       properties:
         status:
-          type: boolean
+          type: bool
           example: true
         message:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
-          
+    
     GetResponseTopic:
+      GetResponseTopic:
       type: object
       properties:
         status:
@@ -258,30 +260,9 @@ components:
           type: string
           example: "Data successfully retrieved"
         data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: "7890"
-              name:
-                type: string
-                example: "bacapres"
-              topic:
-                type: string
-                example: "paslon presiden"
+          type: list
+          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
     
-    getAllTopics:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Pilpres
-        topic:
-          type: string
-          example: presiden 2024
-
     getAllResponseTopics:
       type: object
       properties:
@@ -292,50 +273,8 @@ components:
           type: string
           example: "Data successfully retrieved"
         data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: "123456"
-              name:
-                type: string
-                example: "pilpres"
-              topic:
-                type: string
-                example: "presiden 2024"
-  
-    updateTopic:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Pilpres
-        topic:
-          type: string
-          example: presiden 2024
-
-    updateTopicResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: "Topik berhasil diperbarui dengan ID: "
-          
-    SuccessResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: "Operation successful"
-
+          type: list
+          example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
   requestBodies:
     AuthReq:
       description: Request Authentication
