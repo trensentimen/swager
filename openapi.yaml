@@ -203,7 +203,7 @@ components:
         password:
           type: string
           example: secret
-        confirm password:
+        confirmPassword:
           type: string
           example: secret
        
@@ -241,13 +241,13 @@ components:
 
     addTopicResponse:
       type: object
-        properties:
-          status:
-            type: boolean
-            example: true
-          message:
-            type: string
-            example: "Topik berhasil ditambahkan dengan nama: "
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Topik berhasil ditambahkan dengan nama: "
           
     getTopic:
       type: object
@@ -270,7 +270,13 @@ components:
           example: "Data successfully retrieved"
         data:
           type: list
-          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
+          example: 
+            - id: "7890"
+              name: "bacapres"
+              topic: "paslon presiden"
+            - id: "123456"
+              name: "capres"
+              topic: "cawapres"
     
     getAllTopics:
       type: object
@@ -293,7 +299,13 @@ components:
           example: "Data successfully retrieved"
         data:
           type: list
-          example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
+          example: 
+            - id: "123456"
+              name: "pilpres"
+              topic: "presiden 2024"
+            - id: "123456"
+              name: "capres"
+              topic: "calon presiden"
   
   requestBodies:
     AuthReq:
