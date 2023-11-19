@@ -95,7 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/addResponseTopic"
+                $ref: "#/components/schemas/addTopicResponse"
         "405":
           description: Invalid input
       security:
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getResponseTopic"
+                $ref: "#/components/schemas/GetResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -160,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateResponseTopic"
+                $ref: "#/components/schemas/updateTopicResponse"
         "405":
           description: Invalid input
       security:
@@ -227,8 +227,7 @@ components:
           example: login berhasil
         token:
           type: string
-          example: abcd1234
-    
+
     addTopic:
       type: object
       properties:
@@ -249,16 +248,6 @@ components:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
           
-    getTopic:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Pilpres
-        topic:
-          type: string
-          example: presiden 2024
-
     GetResponseTopic:
       type: object
       properties:
@@ -269,14 +258,19 @@ components:
           type: string
           example: "Data successfully retrieved"
         data:
-          type: list
-          example: 
-            - id: "7890"
-              name: "bacapres"
-              topic: "paslon presiden"
-            - id: "123456"
-              name: "capres"
-              topic: "cawapres"
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "7890"
+              name:
+                type: string
+                example: "bacapres"
+              topic:
+                type: string
+                example: "paslon presiden"
     
     getAllTopics:
       type: object
@@ -298,15 +292,50 @@ components:
           type: string
           example: "Data successfully retrieved"
         data:
-          type: list
-          example: 
-            - id: "123456"
-              name: "pilpres"
-              topic: "presiden 2024"
-            - id: "123456"
-              name: "capres"
-              topic: "calon presiden"
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: "123456"
+              name:
+                type: string
+                example: "pilpres"
+              topic:
+                type: string
+                example: "presiden 2024"
   
+    updateTopic:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Pilpres
+        topic:
+          type: string
+          example: presiden 2024
+
+    updateTopicResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Topik berhasil diperbarui dengan ID: "
+          
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Operation successful"
+
   requestBodies:
     AuthReq:
       description: Request Authentication
