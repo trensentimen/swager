@@ -76,7 +76,7 @@ paths:
         - token:
             - write:apiKey
             - read:apiKey
-        - Bearer: []
+        # - Bearer: []
   /addTopic:
     post:
       tags:
@@ -95,34 +95,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/addTopicResponse"
+                $ref: "#/components/schemas/addResponseTopic"
         "405":
           description: Invalid input
       security:
-        - token:
-            - write:apiKey
-            - read:apiKey
-        - Bearer: []
-   /getTopic:
-    get:
-      tags:
-        - topic
-      summary: Get Topic
-      description: Mendapatkan Topik
-      operationId: authService
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/getTopicResponse"
-        "405":
-          description: Invalid input
-      security:
-        - token:
-            - write:apiKey
-            - read:apiKey
         - Bearer: []
   /getAllTopics:
     get:
@@ -137,12 +113,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAllTopicsResponse"
+                $ref: "#/components/schemas/getAllResponseTopics"
         "405":
           description: Invalid input
       security:
         - Bearer: []
- 
+  /getTopic:
+    get:
+      tags:
+        - topic
+      summary: Get Topic
+      description: Mendapatkan Topik
+      operationId: authService
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getResponseTopic"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
   /updateTopic:
     put:
       tags:
@@ -167,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateTopicResponse"
+                $ref: "#/components/schemas/updateResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -213,7 +206,7 @@ components:
         confirm password:
           type: string
           example: secret
-          
+       
     Login:
       type: object
       properties:
@@ -245,91 +238,63 @@ components:
         topic:
           type: string
           example: presiden 2024
-    
+
     addTopicResponse:
-  type: object
-  properties:
-    status:
-      type: boolean
-      example: true
-    message:
-      type: string
-      example: "Topik berhasil ditambahkan dengan nama: "
-    
-    GgetTopicResponse:
-  type: object
-  properties:
-    status:
-      type: boolean
-      example: true
-    message:
-      type: string
-      example: "Data successfully retrieved"
-    data:
-      type: array
-      items:
-        type: object
+      type: object
         properties:
-          id:
+          status:
+            type: boolean
+            example: true
+          message:
             type: string
-            example: "7890"
-          name:
-            type: string
-            example: "bacapres"
-          topic:
-            type: string
-            example: "paslon presiden"
-    getAllTopicsResponse:
-  type: object
-  properties:
-    status:
-      type: boolean
-      example: true
-    message:
-      type: string
-      example: "Data successfully retrieved"
-    data:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: string
-            example: "123456"
-          name:
-            type: string
-            example: "pilpres"
-          topic:
-            type: string
-            example: "presiden 2024"
+            example: "Topik berhasil ditambahkan dengan nama: "
+          
+    getTopic:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Pilpres
+        topic:
+          type: string
+          example: presiden 2024
 
-updateTopic:
-  type: object
-  properties:
-    id:
-      type: string
-      description: Identifier of the topic to be updated
-    name:
-      type: string
-      description: Updated name of the topic
-    description:
-      type: string
-      description: Updated description of the topic
+    GetResponseTopic:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: "Data successfully retrieved"
+        data:
+          type: list
+          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
     
+    getAllTopics:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Pilpres
+        topic:
+          type: string
+          example: presiden 2024
 
-updateTopicResponse:
-  type: object
-  properties:
-    status:
-      type: boolean
-      example: true
-      description: Indicates the status of the update operation
-    message:
-      type: string
-      example: "Topic updated successfully"
-      description: Descriptive message about the update operation
-    
-
+    getAllResponseTopics:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: "Data successfully retrieved"
+        data:
+          type: list
+          example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
+  
   requestBodies:
     AuthReq:
       description: Request Authentication
