@@ -1,7 +1,8 @@
 openapi: 3.0.3
 info:
   title: Dokumen API Cloud Function - OpenAPI 3.0
-  description: Dokumentasi API Cloud Function - Trensentimen
+  description: >-
+    Dokumentasi API Cloud Function - Trensentimen
   termsOfService: https://github.com/trensentimen/swagger
   contact:
     url: https://github.com/trensentimen
@@ -46,7 +47,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Register"
+                items:
+                  $ref: "#/components/schemas/Register"
         "405":
           description: Invalid input
   /login:
@@ -72,8 +74,8 @@ paths:
           description: Invalid input
       security:
         - token:
-            - write: apiKey
-            - read: apiKey
+            - write:apiKey
+            - read:apiKey
         - Bearer: []
   /addTopic:
     post:
@@ -98,10 +100,10 @@ paths:
           description: Invalid input
       security:
         - token:
-            - write: apiKey
-            - read: apiKey
+            - write:apiKey
+            - read:apiKey
         - Bearer: []
-  /getTopic:
+   /getTopic:
     get:
       tags:
         - topic
@@ -119,8 +121,8 @@ paths:
           description: Invalid input
       security:
         - token:
-            - write: apiKey
-            - read: apiKey
+            - write:apiKey
+            - read:apiKey
         - Bearer: []
   /getAllTopics:
     get:
@@ -140,6 +142,7 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
+ 
   /updateTopic:
     put:
       tags:
@@ -207,9 +210,10 @@ components:
         password:
           type: string
           example: secret
-        confirmPassword:
+        confirm password:
           type: string
           example: secret
+          
     Login:
       type: object
       properties:
@@ -218,11 +222,12 @@ components:
           example: aryka@gmail.com
         password:
           type: string
+
     LoginResponse:
       type: object
       properties:
         status:
-          type: boolean
+          type: bool
           example: true
         message:
           type: string
@@ -230,6 +235,7 @@ components:
         token:
           type: string
           example: abcd1234
+    
     addTopic:
       type: object
       properties:
@@ -239,61 +245,91 @@ components:
         topic:
           type: string
           example: presiden 2024
-    addResponseTopic:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: "Topik berhasil ditambahkan dengan nama: "
-    getResponseTopic:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: "Data successfully retrieved"
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: "7890"
-              name:
-                type: string
-                example: "bacapres"
-              topic:
-                type: string
-                example: "paslon presiden"
-    getAllResponseTopics:
-      type: object
-      properties:
-        status:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: "Data successfully retrieved"
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                example: "123456"
-              name:
-                type: string
-                example: "pilpres"
-              topic:
-                type: string
-                example: "presiden 2024"
+    
+    addTopicResponse:
+  type: object
+  properties:
+    status:
+      type: boolean
+      example: true
+    message:
+      type: string
+      example: "Topik berhasil ditambahkan dengan nama: "
+    
+    GgetTopicResponse:
+  type: object
+  properties:
+    status:
+      type: boolean
+      example: true
+    message:
+      type: string
+      example: "Data successfully retrieved"
+    data:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "7890"
+          name:
+            type: string
+            example: "bacapres"
+          topic:
+            type: string
+            example: "paslon presiden"
+    getAllTopicsResponse:
+  type: object
+  properties:
+    status:
+      type: boolean
+      example: true
+    message:
+      type: string
+      example: "Data successfully retrieved"
+    data:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            example: "123456"
+          name:
+            type: string
+            example: "pilpres"
+          topic:
+            type: string
+            example: "presiden 2024"
+
+updateTopic:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Identifier of the topic to be updated
+    name:
+      type: string
+      description: Updated name of the topic
+    description:
+      type: string
+      description: Updated description of the topic
+    
+
+updateTopicResponse:
+  type: object
+  properties:
+    status:
+      type: boolean
+      example: true
+      description: Indicates the status of the update operation
+    message:
+      type: string
+      example: "Topic updated successfully"
+      description: Descriptive message about the update operation
+    
+
   requestBodies:
     AuthReq:
       description: Request Authentication
@@ -318,4 +354,5 @@ components:
       type: apiKey
       name: Authorization
       in: header
-      description: "Masukan token dengan 'Bearer: ' contoh 'Bearer abcde12345'. perbaiki kodingannya dan rapikan"
+      description: >-
+        Masukan token dengan `Bearer: ` contoh "Bearer abcde12345".
