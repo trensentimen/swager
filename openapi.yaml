@@ -249,6 +249,7 @@ components:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
     
+
     getResponseTopic:
       type: object
       properties:
