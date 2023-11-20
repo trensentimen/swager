@@ -284,6 +284,7 @@ components:
     #     topic:
     #       type: string
     #       example: pilpres
+    
     # updateResponseTopic:
         type: string
       properties: 
