@@ -249,7 +249,6 @@ components:
           type: string
           example: "Topik berhasil ditambahkan dengan nama: "
     
-
     getResponseTopic:
       type: object
       properties:
@@ -275,16 +274,17 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-    updateTopic:
-      type: object
-      properties:
-        name:
-          type: string
-          example: pemilu
-        topic:
-          type: string
-          example: pilpres
-    updateResponseTopic:
+    
+    # updateTopic:
+    #   type: object
+    #   properties:
+    #     name:
+    #       type: string
+    #       example: pemilu
+    #     topic:
+    #       type: string
+    #       example: pilpres
+    # updateResponseTopic:
         type: string
       properties: 
         type: bool
