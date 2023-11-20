@@ -250,7 +250,6 @@ components:
           example: "Topik berhasil ditambahkan dengan nama: "
     
     GetResponseTopic:
-      GetResponseTopic:
       type: object
       properties:
         status:
