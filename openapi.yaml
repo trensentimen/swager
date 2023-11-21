@@ -232,12 +232,19 @@ components:
     addTopic:
       type: object
       properties:
-        name:
+        topicname:
           type: string
           example: Pilpres
-        topic:
-          type: string
-          example: presiden 2024
+        source:
+          type: object
+          properties:
+            source: 
+              type: string
+              example: twitter
+            value: 
+              type: string
+              example: presiden 2024
+            
     
     addResponseTopic:
       type: object
@@ -274,25 +281,7 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-    
-    # updateTopic:
-    #   type: object
-    #   properties:
-    #     name:
-    #       type: string
-    #       example: pemilu
-    #     topic:
-    #       type: string
-    #       example: pilpres
-    
-    # updateResponseTopic:
-        type: string
-      properties: 
-        type: bool
-        example: true
-      message:
-        type: string
-        examplle:"Topic Berhasil di update"
+  
   
   requestBodies:
     AuthReq:
