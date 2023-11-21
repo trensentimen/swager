@@ -151,12 +151,6 @@ paths:
       tags:
         - topic
       summary: Update Topic
-      parameters:
-        - in: query
-          name: id
-          type: string
-          required: true
-          description: Masukan Topik.
       description: Memperbaharui Topik
       operationId: authService
       requestBody:
@@ -170,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateResponseTopic"
+                $ref: "#/components/schemas/ResponseUpdateTopic"
         "405":
           description: Invalid input
       security:
@@ -178,14 +172,13 @@ paths:
   /deleteTopic:
     delete:
       tags:
-        - user
+        - topic
       summary: Delete Topic
-      parameters:
-        - in: query
-          name: id
-          type: string
-          required: true
-          description: Masukan Nama Topik.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/deleteTopic"
       description: Menghapus Topik
       operationId: authService
       responses:
@@ -194,7 +187,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SuccessResponse"
+                $ref: "#/components/schemas/DeleteResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -266,9 +259,42 @@ components:
         id: 
           type: string
           example: 6549bae758638dd4f0137a11
-        
-
-
+    deleteTopic:
+      type: object
+      properties:
+        id: 
+          type: string
+          example: 6549bae758638dd4f0137a11
+    
+    updateTopic:
+      type: object
+      required:
+        - _id
+        - topicname
+        - source
+      properties:
+        _id:
+          type: string
+          example: "6549bae758638dd4f0137a11"
+        topicname:
+          type: string
+          example: "pilpress"
+        source:
+          type: object
+          required:
+            - source
+            - value
+            - date_range
+          properties:
+            source:
+              type: string
+              example: "youtube"
+            value:
+              type: string
+              example: "ytsdaufxqu76"
+            date_range:
+              type: string
+              example: "source2"
 
     addResponseTopic:
       type: object
@@ -326,7 +352,56 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-  
+
+    ResponseUpdateTopic:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Topic berhasil diupdate"
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: "6549bae758638dd4f0137a11"
+              topicname:
+                type: string
+                example: "pilpress"
+              source:
+                type: object
+                properties:
+                  source:
+                    type: string
+                    example: "youtube"
+                  value:
+                    type: string
+                    example: "ytsdaufxqu76"
+                  date_range:
+                    type: string
+                    example: "source2"
+              status:
+                type: string
+                example: ""
+
+    DeleteResponseTopic:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Topic berhasil dihapus"
+        data:
+          type: null
+          example: null
+
   
   requestBodies:
     AuthReq:
