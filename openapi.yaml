@@ -107,6 +107,11 @@ paths:
       summary: Get All Topic
       description: Mendapatkan Semua Topik
       operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getAll"
       responses:
         "200":
           description: successful operation
@@ -131,7 +136,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getResponseTopic"
+                $ref: "#/components/schemas/RequestEmptyBody"
         "405":
           description: Invalid input
       security:
@@ -214,7 +219,7 @@ components:
           type: string
           example: aryka@gmail.com
         password:
-          type: string
+          type: secretpass
 
     LoginResponse:
       type: object
@@ -244,8 +249,13 @@ components:
             value: 
               type: string
               example: presiden 2024
-            
-    
+            status:
+              type: string
+              example: pending
+    RequestEmptyBody:
+      type: string
+
+
     addResponseTopic:
       type: object
       properties:
