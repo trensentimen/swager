@@ -118,7 +118,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getAllResponseTopics"
+                $ref: "#/components/schemas/RequestEmptyBody"
         "405":
           description: Invalid input
       security:
@@ -130,13 +130,18 @@ paths:
       summary: Get Topic
       description: Mendapatkan Topik
       operationId: authService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getTopic"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestEmptyBody"
+                $ref: "#/components/schemas/getResponseTopic"
         "405":
           description: Invalid input
       security:
@@ -254,6 +259,15 @@ components:
               example: pending
     RequestEmptyBody:
       type: string
+    
+    getTopic:
+      type: object
+      properties:
+        id: 
+          type: string
+          example: 6549bae758638dd4f0137a11
+        
+
 
 
     addResponseTopic:
@@ -276,9 +290,30 @@ components:
           type: string
           example: "Data successfully retrieved"
         data:
-          type: list
-          example: [{ "id": "7890", "name": "bacapres", "topic": "paslon presiden" }, { "id": "123456", "name": "capres", "topic": "cawapres" }]
-    
+          type: object
+          properties:
+            _id:
+              type: string
+              example: "6549bae758638dd4f0137a11"
+            topicname:
+              type: string
+              example: "sapi"
+            source:
+              type: object
+              properties:
+                source:
+                  type: string
+                  example: "twitter"
+                value:
+                  type: string
+                  example: "ytsdaufxqu76"
+                date_range:
+                  type: string
+                  example: ""
+            status:
+              type: string
+              example: ""
+
     getAllResponseTopics:
       type: object
       properties:
