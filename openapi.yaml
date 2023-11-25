@@ -28,6 +28,10 @@ tags:
       url: https://trensentimen.my.id/login.html
   - name: topic
     description: Get Token and Authorize
+  - name: authentication
+    description: Get Token and Authorize
+
+
 paths:
   /register:
     post:
@@ -192,6 +196,53 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
+  /sendOtp:
+    post:
+      tags:
+        - authentication
+      summary: Send OTP
+      description: Mengirimkan One-Time Password (OTP)
+      operationId: sendOTPService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendOTPRequest"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendOTPResponse"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+  /verifyOtp:
+    post:
+      tags:
+        - authentication
+      summary: Verify OTP
+      description: Memverifikasi One-Time Password (OTP)
+      operationId: verifyOTPService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/verifyOTPRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/verifyOTPResponse"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
+
 components:
   schemas:
     Register:
@@ -209,7 +260,6 @@ components:
         confirm password:
           type: string
           example: secret
-          
     Login:
       type: object
       properties:
@@ -217,21 +267,7 @@ components:
           type: string
           example: aryka@gmail.com
         password:
-          type: secretpass
-
-    LoginResponse:
-      type: object
-      properties:
-        status:
-          type: bool
-          example: true
-        message:
-          type: string
-          example: login berhasil
-        token:
-          type: string
-          example: abcd1234
-    
+          type: secretpass   
     addTopic:
       type: object
       properties:
@@ -251,8 +287,7 @@ components:
               type: string
               example: pending
     RequestEmptyBody:
-      type: string
-    
+      type: string    
     getTopic:
       type: object
       properties:
@@ -264,8 +299,7 @@ components:
       properties:
         id: 
           type: string
-          example: 6549bae758638dd4f0137a11
-    
+          example: 6549bae758638dd4f0137a11    
     updateTopic:
       type: object
       required:
@@ -295,7 +329,41 @@ components:
             date_range:
               type: string
               example: "source2"
+    sendOTPRequest:
+      type: object
+      properties: 
+        email:
+          type: string
+          example: email@gmail.com
+        otp: 
+          type: integer
+          example: 8433
+        expiredat:
+          type: integer
+          example: 1700811324
+    verifyOTPRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: email@gmail.com
+        otp:
+          type: integer
+          example: 9612
 
+
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: login berhasil
+        token:
+          type: string
+          example: abcd1234   
     addResponseTopic:
       type: object
       properties:
@@ -304,8 +372,7 @@ components:
           example: true
         message:
           type: string
-          example: "Topik berhasil ditambahkan dengan nama: "
-    
+          example: "Topik berhasil ditambahkan dengan nama: "   
     getResponseTopic:
       type: object
       properties:
@@ -339,7 +406,6 @@ components:
             status:
               type: string
               example: ""
-
     getAllResponseTopics:
       type: object
       properties:
@@ -352,7 +418,6 @@ components:
         data:
           type: list
           example: [{ "id": "123456", "name": "pilpres", "topic": "presiden 2024" }, { "id": "123456", "name": "capres", "topic": "calon presiden" }]
-
     ResponseUpdateTopic:
       type: object
       properties:
@@ -388,7 +453,6 @@ components:
               status:
                 type: string
                 example: ""
-
     DeleteResponseTopic:
       type: object
       properties:
@@ -401,6 +465,53 @@ components:
         data:
           type: null
           example: null
+    sendOTPResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Status pengiriman OTP berhasil
+          example: true
+        message:
+          type: string
+          description: OTP dikirimkan melalui whatsapp
+          example: "OTP successfully sent"
+        data:
+          type: object
+          properties:
+            email: 
+              type: string
+              example: emaail@gmail.com
+            otp:
+              type: integer
+              example: 8433
+            expiredat:
+              type: integer
+              example: 1700811324
+            status:
+              type: string
+              example: ""
+    verifyOTPResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Kode OTP berhasil
+          example: true
+        message:
+          type: string
+          description: silahkan masukkan password baru
+          example: OTP is sucessfuly
+        data:
+        type: object
+        properties:
+          email:
+            type: string
+            example: email@gmail.com
+          otp:
+            type: integer
+            example: 9612
+
 
   
   requestBodies:
