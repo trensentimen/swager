@@ -352,7 +352,6 @@ components:
           example: 9612
 
 
-
     LoginResponse:
       type: object
       properties:
@@ -512,7 +511,6 @@ components:
           otp:
             type: integer
             example: 9612
-
 
   
   requestBodies:
