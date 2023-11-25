@@ -242,6 +242,29 @@ paths:
           description: Invalid input
       security:
         - Bearer: []
+    /resetPassword:
+    put:
+      tags:
+        - authentication
+      summary: Reset Password
+      description: Mereset password pengguna
+      operationId: resetPasswordService
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordRequest"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/resetPasswordResponse"
+        "405":
+          description: Invalid input
+      security:
+        - Bearer: []
 
 components:
   schemas:
@@ -350,7 +373,18 @@ components:
         otp:
           type: integer
           example: 9612
-
+    resetPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          example: email@gmail.com
+        otp:
+          type: integer
+          example: 9612
+        password: 
+          type: string
+          example: makanBang
 
     LoginResponse:
       type: object
@@ -511,6 +545,29 @@ components:
           otp:
             type: integer
             example: 9612
+    resetPasswordResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+          description: Reset Pssword Berhasil
+          example: true
+        message:
+          type: string
+          description: Reset password
+          example: Reset password is sucessfuly
+        data:
+        type: object
+        properties:
+          email:
+            type: string
+            example: email@gmail.com
+          otp:
+            type: integer
+            example: 9612
+          password:
+            type: string
+            example: makanBang
 
   
   requestBodies:
