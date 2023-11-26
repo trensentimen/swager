@@ -583,6 +583,7 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/AuthResponse"
+ 
   securitySchemes:
     token:
       type: apiKey
