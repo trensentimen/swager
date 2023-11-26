@@ -265,6 +265,7 @@ paths:
       security:
         - Bearer: []
 
+
 components:
   schemas:
     Register:
