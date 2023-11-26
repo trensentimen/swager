@@ -570,6 +570,7 @@ components:
             type: string
             example: makanBang
 
+
   requestBodies:
     AuthReq:
       description: Request Authentication
@@ -585,7 +586,6 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/AuthResponse"
- 
   securitySchemes:
     token:
       type: apiKey
