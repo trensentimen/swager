@@ -31,7 +31,6 @@ tags:
   - name: authentication
     description: Get Token and Authorize
 
-
 paths:
   /register:
     post:
