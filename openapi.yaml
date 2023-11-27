@@ -504,10 +504,10 @@ components:
               type: string
               example: emaail@gmail.com
             otp:
-              type: integer
+              type: string
               example: 8433
             expiredat:
-              type: integer
+              type: string
               example: 1700811324
             status:
               type: string
@@ -524,14 +524,14 @@ components:
           description: silahkan masukkan password baru
           example: OTP is sucessfuly
         data:
-        type: object
-        properties:
-          email:
-            type: string
-            example: email@gmail.com
-          otp:
-            type: integer
-            example: 9612
+          type: object
+          properties:
+            email:
+              type: string
+              example: email@gmail.com
+            otp:
+              type: string
+              example: 9612
     resetPasswordResponse:
       type: object
       properties:
@@ -544,17 +544,17 @@ components:
           description: Reset password
           example: Reset password is sucessfuly
         data:
-        type: object
-        properties:
-          email:
-            type: string
-            example: email@gmail.com
-          otp:
-            type: integer
-            example: 9612
-          password:
-            type: string
-            example: makanBang
+          type: object
+          properties:
+            email:
+              type: string
+              example: email@gmail.com
+            otp:
+              type: string
+              example: 9612
+            password:
+              type: string
+              example: makanBang
 
   requestBodies:
     AuthReq:
