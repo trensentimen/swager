@@ -213,7 +213,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/sendOTPResponse"
+                $ref: "#/components/schemas/SuccessResponse"
         "405":
           description: Invalid input
   /verifyOtp:
@@ -234,11 +234,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/verifyOTPResponse"
+                $ref: "#/components/schemas/SuccessResponse"
         "405":
           description: Invalid input
-    /resetPassword:
-    put:
+  /resetPassword:
+    post:
       tags:
         - authentication
       summary: Reset Password
@@ -255,7 +255,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/resetPasswordResponse"
+                $ref: "#/components/schemas/SuccessResponse"
         "405":
           description: Invalid input
 
@@ -373,6 +373,15 @@ components:
           type: string
           example: makanBang
 
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: bool
+          example: true
+        message:
+          type: string
+          example: pesan berhasil
     LoginResponse:
       type: object
       properties:
@@ -486,75 +495,6 @@ components:
         data:
           type: null
           example: null
-    sendOTPResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          description: Status pengiriman OTP berhasil
-          example: true
-        message:
-          type: string
-          description: OTP dikirimkan melalui whatsapp
-          example: "OTP successfully sent"
-        data:
-          type: object
-          properties:
-            email:
-              type: string
-              example: emaail@gmail.com
-            otp:
-              type: string
-              example: 8433
-            expiredat:
-              type: string
-              example: 1700811324
-            status:
-              type: string
-              example: ""
-    verifyOTPResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          description: Kode OTP berhasil
-          example: true
-        message:
-          type: string
-          description: silahkan masukkan password baru
-          example: OTP is sucessfuly
-        data:
-          type: object
-          properties:
-            email:
-              type: string
-              example: email@gmail.com
-            otp:
-              type: string
-              example: 9612
-    resetPasswordResponse:
-      type: object
-      properties:
-        status:
-          type: boolean
-          description: Reset Pssword Berhasil
-          example: true
-        message:
-          type: string
-          description: Reset password
-          example: Reset password is sucessfuly
-        data:
-          type: object
-          properties:
-            email:
-              type: string
-              example: email@gmail.com
-            otp:
-              type: string
-              example: 9612
-            password:
-              type: string
-              example: makanBang
 
   requestBodies:
     AuthReq:
