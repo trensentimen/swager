@@ -271,6 +271,9 @@ components:
         confirm password:
           type: string
           example: secret
+        phone number:
+          type: string
+          example: 123456789
     Login:
       type: object
       properties:
@@ -302,13 +305,13 @@ components:
     getTopic:
       type: object
       properties:
-        id:
+        _id:
           type: string
           example: 6549bae758638dd4f0137a11
     deleteTopic:
       type: object
       properties:
-        id:
+        _id:
           type: string
           example: 6549bae758638dd4f0137a11
     updateTopic:
@@ -365,6 +368,9 @@ components:
           type: string
           example: 9612
         password:
+          type: string
+          example: makanBang
+        confirm password: 
           type: string
           example: makanBang
 
