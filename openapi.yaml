@@ -110,11 +110,6 @@ paths:
       summary: Get All Topic
       description: Mendapatkan Semua Topik
       operationId: authService
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/getAll"
       responses:
         "200":
           description: successful operation
@@ -133,11 +128,6 @@ paths:
       summary: Get Topic
       description: Mendapatkan Topik
       operationId: authService
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/getTopic"
       responses:
         "200":
           description: successful operation
