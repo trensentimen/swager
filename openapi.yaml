@@ -145,7 +145,7 @@ paths:
       security:
         - Bearer: []
   /updateTopic:
-    put:
+    post:
       tags:
         - topic
       summary: Update Topic
@@ -168,7 +168,7 @@ paths:
       security:
         - Bearer: []
   /deleteTopic:
-    delete:
+    post:
       tags:
         - topic
       summary: Delete Topic
