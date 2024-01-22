@@ -122,7 +122,7 @@ paths:
       security:
         - Bearer: []
   /getTopic:
-    get:
+    post:
       tags:
         - topic
       summary: Get Topic
